@@ -3,7 +3,7 @@ crowdin_sync.py
 
 Introduction
 ------------
-This script is used to synchronize OmniROM's translations with Crowdin's. Also, it can handle
+This script is used to synchronize SlimRoms's translations with Crowdin's. Also, it can handle
 automatic commiting to Gerrit and pushing/downloading to/from Crowdin. It's based on CM's sync
 script maintained by Michael Bestas & Marco Brohet.
 
@@ -23,8 +23,8 @@ The script is currently only python2 supported.
 
 Executing
 ---------
-Copy all files to the root of your local copy of OmniROM's source code.
-Edit crowdin/config_omni.yaml to set the api key & your current OmniROM path.
+Copy all files to the root of your local copy of SlimRoms's source code.
+Edit crowdin/config_slim.yaml to set the api key & your current SlimRoms path.
 Execute:
 
     ./crowdin_sync.py --username your_gerrit_username

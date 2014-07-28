@@ -3,10 +3,11 @@
 # crowdin_sync.py
 #
 # Updates Crowdin source translations and pushes translations
-# directly to OmniROM's Gerrit.
+# directly to SlimRom's Gerrit.
 #
 # Copyright (C) 2014 The CyanogenMod Project
 # Modifications Copyright (C) 2014 OmniROM
+# Modifications Copyright (C) 2014 SlimRoms
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -63,19 +64,19 @@ def push_as_commit(path, name, branch, username):
         return
 
     # Push commit
-    repo.git.push('ssh://' + username + '@gerrit.omnirom.org:29418/' + name, 'HEAD:refs/for/' + branch)
+    repo.git.push('ssh://' + username + '@gerrit.slimroms.net:29418/' + name, 'HEAD:refs/for/' + branch)
 
     print('Succesfully pushed commit for ' + name)
 
 ###################################################################################################
 
-print('Welcome to the OmniROM Crowdin sync script!')
+print('Welcome to the SlimRoms Crowdin sync script!')
 
 ###################################################################################################
 
-parser = argparse.ArgumentParser(description='Synchronising OmniROM\'s translations with Crowdin')
+parser = argparse.ArgumentParser(description='Synchronising SlimRom\'s translations with Crowdin')
 parser.add_argument('--username', help='Gerrit username', required=True)
-#parser.add_argument('--upload-only', help='Only upload OmniROM source translations to Crowdin', required=False)
+#parser.add_argument('--upload-only', help='Only upload SlimRoms source translations to Crowdin', required=False)
 args = vars(parser.parse_args())
 
 username = args['username']
@@ -101,17 +102,17 @@ if not os.path.isfile('android/default.xml'):
 else:
     print('Found: android/default.xml')
 
-# Check for crowdin/config_omni.yaml
-if not os.path.isfile('crowdin/config_omni.yaml'):
-    sys.exit('You have no crowdin/config_omni.yaml. Terminating.')
+# Check for crowdin/config_slim.yaml
+if not os.path.isfile('crowdin/config_slim.yaml'):
+    sys.exit('You have no crowdin/config_slim.yaml. Terminating.')
 else:
-    print('Found: crowdin/config_omni.yaml')
+    print('Found: crowdin/config_slim.yaml')
 
-# Check for crowdin/crowdin_omni.yaml
-if not os.path.isfile('crowdin/crowdin_omni.yaml'):
-    sys.exit('You have no crowdin/crowdin_omni.yaml. Terminating.')
+# Check for crowdin/crowdin_slim.yaml
+if not os.path.isfile('crowdin/crowdin_slim.yaml'):
+    sys.exit('You have no crowdin/crowdin_slim.yaml. Terminating.')
 else:
-    print('Found: crowdin/crowdin_omni.yaml')
+    print('Found: crowdin/crowdin_slim.yaml')
 
 # Check for crowdin/extra_packages.xml
 if not os.path.isfile('crowdin/extra_packages.xml'):
@@ -123,13 +124,13 @@ else:
 
 print('\nSTEP 1: Upload Crowdin source translations')
 # Execute 'crowdin-cli upload sources' and show output
-print(subprocess.check_output(['crowdin-cli', '--config=crowdin/crowdin_omni.yaml', '--identity=crowdin/config_omni.yaml', 'upload', 'sources']))
+print(subprocess.check_output(['crowdin-cli', '--config=crowdin/crowdin_slim.yaml', '--identity=crowdin/config_slim.yaml', 'upload', 'sources']))
 
 ############################################## STEP 2 ##############################################
 
 print('\nSTEP 2: Download Crowdin translations')
 # Execute 'crowdin-cli download' and show output
-print(subprocess.check_output(['crowdin-cli', '--config=crowdin/crowdin_omni.yaml', '--identity=crowdin/config_omni.yaml', 'download']))
+print(subprocess.check_output(['crowdin-cli', '--config=crowdin/crowdin_slim.yaml', '--identity=crowdin/config_slim.yaml', 'download']))
 
 ############################################## STEP 3 ##############################################
 
@@ -148,7 +149,7 @@ for xml_file in result:
 
 print('\nSTEP 4: Create a list of pushable translations')
 # Get all files that Crowdin pushed
-proc = subprocess.Popen(['crowdin-cli --config=crowdin/crowdin_omni.yaml --identity=crowdin/config_omni.yaml list sources'], stdout=subprocess.PIPE, shell=True)
+proc = subprocess.Popen(['crowdin-cli --config=crowdin/crowdin_slim.yaml --identity=crowdin/config_slim.yaml list sources'], stdout=subprocess.PIPE, shell=True)
 proc.wait() # Wait for the above to finish
 
 ############################################## STEP 5 ##############################################

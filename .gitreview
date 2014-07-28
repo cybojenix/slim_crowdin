@@ -1,5 +1,5 @@
 [gerrit]
-host=gerrit.omnirom.org
+host=gerrit.slimroms.net
 port=29418
-project=omni_crowdin
-defaultbranch=android-4.4
+project=SlimRoms/slim_crowdin
+defaultbranch=kk4.4

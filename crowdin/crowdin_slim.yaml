@@ -1,9 +1,10 @@
-# crowdin_omni.yaml
+# crowdin_slim.yaml
 #
-# Crowdin configuration file for OmniROM
+# Crowdin configuration file for SlimRoms
 #
 # Copyright (C) 2014 The CyanogenMod Project
 # Modifications Copyright (C) 2014 OmniROM
+# Modifications Copyright (C) 2014 SlimRoms
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,13 +18,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-project_identifier: OmniROM
+project_identifier: SlimTesting
 preserve_hierarchy: true
 
 files:
-  # Default for AOSP projects with custom additions
+  # Default for AOSP projects with slim additions
   -
-    source:      '/**/values/custom_*.xml'
+    source:      '/**/values/slim_*.xml'
     translation: '/%original_path%-%android_code%/%original_file_name%'
     languages_mapping: &anchor
       android_code:
@@ -79,16 +80,15 @@ files:
         vi: vi
         zu: zu
     ignore:
-      - /**/custom_attrs.xml
-      - /**/custom_dimens.xml
-      - /**/custom_donottranslate.xml
-      - /**/custom_integers.xml
-      - /**/custom_styles.xml
-      - /frameworks/base/core/res/res/values/custom_arrays.xml
-      - /frameworks/base/packages/SystemUI/res/values/custom_arrays.xml
-      - /packages/apps/Camera2/res/values/custom_arrays.xml
-      - /packages/apps/OmniGears/res/values/custom_arrays.xml
-      - /packages/services/Telephony/res/values/custom_arrays.xml
+      - /**/slim_attrs.xml
+      - /**/slim_dimens.xml
+      - /**/slim_donottranslate.xml
+      - /**/slim_integers.xml
+      - /**/slim_styles.xml
+      - /frameworks/base/core/res/res/values/slim_arrays.xml
+      - /frameworks/base/packages/SystemUI/res/values/slim_arrays.xml
+      - /packages/apps/Camera2/res/values/slim_arrays.xml
+      - /packages/services/Telephony/res/values/slim_arrays.xml
       - /device/**/overlay/**/*.xml
       - /development/**/*.xml
 
@@ -126,22 +126,6 @@ files:
 
 # Other projects
 
-  # WallpaperCropper
-  -
-    source:      '/frameworks/base/packages/WallpaperCropper/res/values/strings.xml'
-    translation: '/%original_path%-%android_code%/%original_file_name%'
-    languages_mapping: *anchor
-
-  # Apollo
-  -
-    source:      '/packages/apps/Apollo/res/values/strings.xml'
-    translation: '/%original_path%-%android_code%/%original_file_name%'
-    languages_mapping: *anchor
-  -
-    source:      '/packages/apps/Apollo/res/values/plurals.xml'
-    translation: '/%original_path%-%android_code%/%original_file_name%'
-    languages_mapping: *anchor
-
   # DSPManager
   -
     source:      '/packages/apps/DSPManager/res/values/strings.xml'
@@ -152,28 +136,3 @@ files:
     translation: '/%original_path%-%android_code%/%original_file_name%'
     languages_mapping: *anchor
 
-  # OmniTorch
-  -
-    source:      '/packages/apps/OmniTorch/res/values/strings.xml'
-    translation: '/%original_path%-%android_code%/%original_file_name%'
-    languages_mapping: *anchor
-
-  # UserDictionaryProvider
-  -
-    source:      '/packages/providers/UserDictionaryProvider/res/values/strings.xml'
-    translation: '/%original_path%-%android_code%/%original_file_name%'
-    languages_mapping: *anchor
-
-  # Galaxy4
-  -
-    source:      '/packages/wallpapers/Galaxy4/res/values/strings.xml'
-    translation: '/%original_path%-%android_code%/%original_file_name%'
-    languages_mapping: *anchor
-
-# Device specific packages
-
-  # SamsungServiceMode
-  -
-    source:      '/packages/apps/SamsungServiceMode/res/values/strings.xml'
-    translation: '/%original_path%-%android_code%/%original_file_name%'
-    languages_mapping: *anchor
